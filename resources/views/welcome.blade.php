@@ -4,6 +4,7 @@
 
     <div class="container">
         <div class="content">
+            @include('partials.nav')
             <div class="title">Laravel 5</div>
         </div>
     </div>
