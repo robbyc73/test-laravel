@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Factory;
+use Illuminate\Validation\Validator;
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -45,13 +47,18 @@ Route::group(['prefix' => 'admin'], function() {
         return view('admin.create');
     })->name('admin.create');
 
-    Route::post('create', function(Request $request) {
-        return "It works!";
+    Route::post('create', function(Request $request, Factory $validator) {
+        /** @var Validator $validation */
+        $validation = $validator->make($request->all(),['title' => 'required|unique:posts|max:255']);
+
+        if($validation->fails()) {
+            return redirect()->back()->withErrors($validation);
+        }
+        return redirect()
+            ->route('admin.index')
+            ->with('info', 'Post created, new Title: ' . $request->input('title'));
     })->name('admin.create');
 
-   /* Route::post('update/{id}', function(Request $request) {
-        return "It works!";
-    })->name('admin.update');*/
 
     Route::get('edit/{id}', function ($id) {
         if ($id == 1) {
@@ -68,8 +75,17 @@ Route::group(['prefix' => 'admin'], function() {
         return view('admin.edit', ['post' => $post]);
     })->name('admin.edit');
 
-    Route::post('edit', function(Request $request) {
-        return "It works!";
+    Route::post('edit', function(Request $request, Factory $validator) {
+
+        /** @var Validator $validation */
+        $validation = $validator->make($request->all(),['title' => 'required|min:2']);
+
+        if($validation->fails()) {
+            return redirect()->back()->withErrors($validation);
+        }
+        return redirect()
+            ->route('admin.index')
+            ->with('info', 'Post edited, new Title: ' . $request->input('title'));
     })->name('admin.update');
 });
 
