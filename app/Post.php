@@ -10,13 +10,16 @@ namespace App;
 
 
 use Symfony\Component\HttpFoundation\Session\Session;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Post
  * @package App
  */
-class Post
+class Post extends Model
 {
+
+
     /**
      * @param $session
      * @return mixed
