@@ -15,7 +15,7 @@
                 </div>
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <input type="hidden" name="id" value="{{ $postId }}">
+                <input type="hidden" name="id" value="{{ $post['id'] }}">
             </form>
         </div>
     </div>

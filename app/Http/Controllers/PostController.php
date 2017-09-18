@@ -20,25 +20,22 @@ class PostController extends Controller
      * @param Store $session
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getIndex(Store $session)
+    public function getIndex()
     {
-        $post = new Post();
-        $posts = $post->getPosts($session);
-
+        $posts = Post::all();
         return view('blog.index',['posts' => $posts]);
     }
 
-    public function getAdminIndex(Store $session)
+    public function getAdminIndex()
     {
-        $post = new Post();
-        $posts = $post->getPosts($session);
+        $posts = Post::all();
         return view('admin.index', ['posts' => $posts]);
     }
 
-    public function getPost(Store $session, $id)
+    public function getPost($id)
     {
-        $post = new Post();
-        $post = $post->getPost($session, $id);
+        Post::
+        $post = Post::Where('id',$id)->first();
         return view('blog.post', ['post' => $post]);
     }
 
@@ -60,8 +57,12 @@ class PostController extends Controller
             'title' => 'required|min:5',
             'content' => 'required|min:10'
         ]);
-        $post = new Post();
-        $post->addPost($session, $request->input('title'), $request->input('content'));
+        $post = new Post([
+            'title' =>  $request->input('title'),
+            'content' => $request->input('content')
+        ]);
+        $post->save();
+
         return redirect()->route('admin.index')->with('info', 'Post created, Title is: ' . $request->input('title'));
     }
 

@@ -94,4 +94,6 @@ class Post extends Model
         ];
         $session->put('posts', $posts);
     }
+
+
 }
