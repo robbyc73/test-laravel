@@ -294,7 +294,7 @@
       <updated>1504429582223</updated>
       <workItem from="1504429583639" duration="4465000" />
       <workItem from="1504931276709" duration="7197000" />
-      <workItem from="1505696857757" duration="1309000" />
+      <workItem from="1505696857757" duration="1414000" />
     </task>
     <task id="LOCAL-00001" summary="another test commit">
       <created>1504521725863</created>
@@ -366,11 +366,18 @@
       <option name="project" value="LOCAL" />
       <updated>1504939265533</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feature/test-views updated workspace.xml&#10;">
+      <created>1505698376586</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1505698376586</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12971000" />
+    <option name="totallyTimeSpent" value="13076000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-3" y="0" width="1886" height="893" extended-state="6" />
@@ -420,7 +427,8 @@
     <MESSAGE value="feature/test-views basic tut project layout" />
     <MESSAGE value="feature/test-views basic blog layout&#10;" />
     <MESSAGE value="feature/test-views basic admin layout&#10;" />
-    <option name="LAST_COMMIT_MESSAGE" value="feature/test-views basic admin layout&#10;" />
+    <MESSAGE value="feature/test-views updated workspace.xml&#10;" />
+    <option name="LAST_COMMIT_MESSAGE" value="feature/test-views updated workspace.xml&#10;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
