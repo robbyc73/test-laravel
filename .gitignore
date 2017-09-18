@@ -6,4 +6,4 @@ Homestead.json
 .env
 
 #idea dir ignores
-.idea/
+.idea/workspace.xml
