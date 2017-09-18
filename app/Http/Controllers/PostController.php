@@ -32,10 +32,10 @@ class PostController extends Controller
         return view('admin.index', ['posts' => $posts]);
     }
 
-    public function getPost($id)
+    public function getPost(Store $session, $id)
     {
-        Post::
-        $post = Post::Where('id',$id)->first();
+        $post = new Post();
+        $post = $post->getPost($session, $id);
         return view('blog.post', ['post' => $post]);
     }
 
