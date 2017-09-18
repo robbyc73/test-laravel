@@ -19,6 +19,10 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
 
+    /**
+     * @var array $fillable
+     */
+    protected $fillable = ['title','content'];
 
     /**
      * @param $session
