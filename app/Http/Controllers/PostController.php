@@ -26,13 +26,13 @@ class PostController extends Controller
      */
     public function getIndex()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('title', 'asc')->paginate(2);
         return view('blog.index',['posts' => $posts]);
     }
 
     public function getAdminIndex()
     {
-        $posts = Post::all();
+        $posts = Post::orderBy('title', 'asc')->paginate(2);
         return view('admin.index', ['posts' => $posts]);
     }
 
