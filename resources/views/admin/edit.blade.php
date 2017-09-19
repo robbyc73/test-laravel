@@ -7,15 +7,15 @@
             <form action="{{ route('admin.update') }}" method="post">
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" value="{{ $post['title'] }}" class="form-control" id="title" name="title">
+                    <input type="text" value="{{ $post->title }}" class="form-control" id="title" name="title">
                 </div>
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <input type="text" value="{{ $post['content'] }}" class="form-control" id="content" name="content">
+                    <input type="text" value="{{ $post->content }}" class="form-control" id="content" name="content">
                 </div>
                 {{ csrf_field() }}
                 <button type="submit" class="btn btn-primary">Submit</button>
-                <input type="hidden" name="id" value="{{ $post['id'] }}">
+                <input type="hidden" name="id" value="{{ $post->id }}">
             </form>
         </div>
     </div>
