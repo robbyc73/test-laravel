@@ -38,7 +38,7 @@ class PostController extends Controller
 
     public function getPost($id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = Post::find($id);
         return view('blog.post', ['post' => $post]);
     }
 
@@ -49,7 +49,7 @@ class PostController extends Controller
 
     public function getAdminEdit($id)
     {
-        $post = Post::where('id', $id)->first();
+        $post = Post::find($id);
         return view('admin.edit', ['post' => $post]);
     }
 
@@ -75,7 +75,7 @@ class PostController extends Controller
             'content' => 'required|min:10'
         ]);
         /** @var Post $post */
-        $post = Post::where('id', $request->input('id'))->first();
+        $post = Post::find($request->input('id'));
         $post->fill([
             'title' => $request->input('title'),
             'content' =>  $request->input('content')
