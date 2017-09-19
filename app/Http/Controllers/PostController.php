@@ -30,29 +30,47 @@ class PostController extends Controller
         return view('blog.index',['posts' => $posts]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminIndex()
     {
         $posts = Post::orderBy('title', 'asc')->paginate(2);
         return view('admin.index', ['posts' => $posts]);
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getPost($id)
     {
         $post = Post::find($id);
         return view('blog.post', ['post' => $post]);
     }
 
+    /**
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminCreate()
     {
         return view('admin.create');
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getAdminEdit($id)
     {
         $post = Post::find($id);
         return view('admin.edit', ['post' => $post]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postAdminCreate(Request $request)
     {
         $this->validate($request, [
@@ -68,6 +86,10 @@ class PostController extends Controller
         return redirect()->route('admin.index')->with('info', 'Post created, Title is: ' . $request->input('title'));
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function postAdminUpdate(Request $request)
     {
         $this->validate($request, [
@@ -85,6 +107,10 @@ class PostController extends Controller
         return redirect()->route('admin.index')->with('info', 'Post edited, new Title is: ' . $request->input('title'));
     }
 
+    /**
+     * @param $id
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function getAdminDelete($id)
     {
         /** @var Post $post */

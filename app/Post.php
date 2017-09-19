@@ -9,6 +9,7 @@
 namespace App;
 
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,11 +19,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Post extends Model
 {
+    use SoftDeletes;
 
     /**
      * @var array $fillable
      */
-    protected $fillable = ['title','content'];
+    protected $fillable = ['title','content', 'deleted_at'];
 
     /**
      * @param $session
