@@ -34,9 +34,28 @@ class Post extends Model
         return $this->hasMany('App\Like');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+
+    /**
+     * @param $title
+     */
+    public function setTitleAttribute($value)
+    {
+        $this->attributes['title'] = strtolower($value);
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleAttribute($value)
+    {
+        return strtoupper($value);
     }
 
 

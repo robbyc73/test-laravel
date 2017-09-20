@@ -64,7 +64,8 @@ class PostController extends Controller
      */
     public function getAdminCreate()
     {
-        return view('admin.create');
+        $tags = Tag::all();
+        return view('admin.create', ['tags' => $tags]);
     }
 
     /**
