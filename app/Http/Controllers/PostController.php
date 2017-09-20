@@ -117,6 +117,7 @@ class PostController extends Controller
         $post = Post::find($id);
 
         $title = $post->title;
+        $post->likes()->delete();
         $post->delete();
         return redirect()->route('admin.index')->with('info', 'Post '.$title.' deleted');
     }
