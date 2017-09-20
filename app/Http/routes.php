@@ -24,6 +24,17 @@ Route::get('post/{id}', [
     'as' => 'blog.post'
 ]);
 
+// should be posting this!
+Route::get('post/{postId}/like', [
+    'uses' => 'LikeController@getLikeCreate',
+    'as' => 'blog.post.like'
+]);
+
+Route::get('post/{postId}/tag/{tagId}', [
+    'uses' => 'TagController@getPostTag',
+    'as' => 'blog.post.tag'
+]);
+
 Route::get('about', function () {
     return view('other.about');
 })->name('other.about');
