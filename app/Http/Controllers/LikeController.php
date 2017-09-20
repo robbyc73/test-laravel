@@ -24,6 +24,6 @@ class LikeController extends Controller
 
         $like = new Like();
         $post->likes()->save($like);
-        return redirect()->route('blog.post', ['id' => $postId])->with('info', 'Post Liked');
+        return redirect()->back();
     }
 }
