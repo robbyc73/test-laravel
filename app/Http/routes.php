@@ -25,9 +25,14 @@ Route::get('post/{id}', [
 ]);
 
 // should be posting this!
-Route::get('like/{postId}', [
-    'uses' => 'LikeController@postLikeCreate',
+Route::get('post/{postId}/like', [
+    'uses' => 'LikeController@getLikeCreate',
     'as' => 'blog.post.like'
+]);
+
+Route::get('post/{postId}/tag/{tagId}', [
+    'uses' => 'TagController@getPostTag',
+    'as' => 'blog.post.tag'
 ]);
 
 Route::get('about', function () {

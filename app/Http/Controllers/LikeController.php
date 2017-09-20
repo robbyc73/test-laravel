@@ -14,7 +14,7 @@ use App\Like;
  */
 class LikeController extends Controller
 {
-    public function postLikeCreate(Request $request, $postId)
+    public function getLikeCreate(Request $request, $postId)
     {
         $post = Post::find($postId);
 

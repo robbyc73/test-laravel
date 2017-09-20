@@ -45,8 +45,18 @@ class PostController extends Controller
      */
     public function getPost($id)
     {
-        $post = Post::where('id',$id)->with('likes')->first();
-        return view('blog.post', ['post' => $post]);
+        $tags = Tag::all();
+        $post = Post::where('id',$id)->with('likes')->with('tags')->first();
+
+        $postTags = $post->tags;
+        $postTagIds = [];
+        foreach($postTags as $postTag){
+            $postTagIds[] = $postTag->id;
+        }
+
+        $freeTags = $tags->except(implode(',',$postTagIds));
+
+        return view('blog.post', ['post' => $post, 'freeTags' => $freeTags]);
     }
 
     /**
@@ -64,7 +74,8 @@ class PostController extends Controller
     public function getAdminEdit($id)
     {
         $post = Post::find($id);
-        return view('admin.edit', ['post' => $post]);
+        $tags = Tag::all();
+        return view('admin.edit', ['post' => $post, 'tags' => $tags]);
     }
 
     /**
@@ -82,6 +93,7 @@ class PostController extends Controller
             'content' => $request->input('content')
         ]);
         $post->save();
+        $post->tags()->attach($request->input('tags') === null ? [] : $request->input('tags'));
 
         return redirect()->route('admin.index')->with('info', 'Post created, Title is: ' . $request->input('title'));
     }
@@ -104,6 +116,7 @@ class PostController extends Controller
         ]);
 
         $post->save();
+        $post->tags()->sync($request->input('tags') === null ? [] : $request->input('tags'));
         return redirect()->route('admin.index')->with('info', 'Post edited, new Title is: ' . $request->input('title'));
     }
 
@@ -118,6 +131,7 @@ class PostController extends Controller
 
         $title = $post->title;
         $post->likes()->delete();
+        $post->tags()->detach();
         $post->delete();
         return redirect()->route('admin.index')->with('info', 'Post '.$title.' deleted');
     }
