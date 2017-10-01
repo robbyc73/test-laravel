@@ -16,11 +16,15 @@
     <hr>
     @foreach($posts as $post)
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-12 text-center">
             <p><strong>{{$post->title}}</strong> <a href="{{ route('admin.edit', ['id' => $post->id]) }}">Edit</a>&nbsp;
                 <a href="{{ route('admin.delete', ['id' => $post->id]) }}">Delete</a></p>
         </div>
     </div>
     @endforeach
-    {{ $posts->links() }}
+    <div class="row">
+        <div class="col-md-12 text-center">
+            {{ $posts->links() }}
+        </div>
+    </div>
 @endsection
